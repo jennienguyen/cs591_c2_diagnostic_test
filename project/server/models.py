@@ -55,3 +55,14 @@ class User(db.Model):
             return 'Signature expired. Please log in again.'
         except jwt.InvalidTokenError:
             return 'Invalid token. Please log in again.'
+
+    @app.route("/users/index")
+    def users_index():
+        users = db.session.query(User).all()
+        user_list = []
+        for i in users:
+            temp = {}
+            temp["user"] = i.email
+            user_list.append(temp)
+        return str(user_list)
+        
