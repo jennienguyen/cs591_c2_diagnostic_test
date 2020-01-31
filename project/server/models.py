@@ -61,8 +61,6 @@ class User(db.Model):
         users = db.session.query(User).all()
         user_list = []
         for i in users:
-            temp = {}
-            temp["user"] = i.email
-            user_list.append(temp)
+            user_list.append(i.email)
         return str(user_list)
         
